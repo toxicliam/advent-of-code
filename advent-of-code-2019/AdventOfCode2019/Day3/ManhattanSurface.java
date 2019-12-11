@@ -167,7 +167,7 @@ public class ManhattanSurface {
                 case 0:
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY][positionX + x] == 3) {
-                            pathLength2 += cordFinder((positionX + x), positionY, originX, originY, instructions2, surface);
+                            pathLength2 += cordFinder((positionX + x), positionY, originX, originY, instructions2);
                             print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
@@ -178,7 +178,7 @@ public class ManhattanSurface {
                 case 15:
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY + x][positionX] == 3) {
-                            pathLength2 += cordFinder(positionX, positionY + x, originX, originY, instructions2, surface);
+                            pathLength2 += cordFinder(positionX, positionY + x, originX, originY, instructions2);
                             print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
@@ -189,7 +189,7 @@ public class ManhattanSurface {
                 case 10:
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY][positionX - x] == 3) {
-                            pathLength2 += cordFinder(positionX - x, positionY, originX, originY, instructions2, surface);
+                            pathLength2 += cordFinder(positionX - x, positionY, originX, originY, instructions2);
                             print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
@@ -200,7 +200,7 @@ public class ManhattanSurface {
                 case 5:
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY - x][positionX] == 3) {
-                            pathLength2 += cordFinder(positionX, positionY - x, originX, originY, instructions2, surface);
+                            pathLength2 += cordFinder(positionX, positionY - x, originX, originY, instructions2);
                             print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
@@ -216,7 +216,7 @@ public class ManhattanSurface {
     }
 
 
-    public int cordFinder(int cordX, int cordY, int originX, int originY, ArrayList<String> instructions, int[][] surface) {
+    public int cordFinder(int cordX, int cordY, int originX, int originY, ArrayList<String> instructions) {
         int positionX = originX;
         int positionY = originY;
         VectorSplitter vector = new VectorSplitter();
@@ -226,7 +226,7 @@ public class ManhattanSurface {
             int distance = vector.splitter(instructions.get(0))[1];
             switch (direction) {
                 case 0:
-                    for (int x = 0; x <= distance; x++) {
+                    for (int x = 0; x < distance; x++) {
                         if (positionY == cordY && positionX + x == cordX) {
                             return pathlength;
                         }
@@ -235,7 +235,7 @@ public class ManhattanSurface {
                     positionX += distance;
                     break;
                 case 15:
-                    for (int x = 0; x <= distance; x++) {
+                    for (int x = 0; x < distance; x++) {
                         if (positionY + x == cordY && positionX == cordX) {
                             return pathlength;
                         }
@@ -244,7 +244,7 @@ public class ManhattanSurface {
                     positionY += distance;
                     break;
                 case 10:
-                    for (int x = 0; x <= distance; x++) {
+                    for (int x = 0; x < distance; x++) {
                         if (positionY == cordY && positionX - x == cordX) {
                             return pathlength;
                         }
@@ -253,7 +253,7 @@ public class ManhattanSurface {
                     positionX -= distance;
                     break;
                 case 5:
-                    for (int x = 0; x <= distance; x++) {
+                    for (int x = 0; x < distance; x++) {
                         if (positionY - x == cordY && positionX == cordX) {
                             return pathlength;
                         }
