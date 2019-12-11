@@ -17,6 +17,6 @@ public class ManhattanDistanceTest {
     @Test
     public void Example3()throws Exception{
         ManhattanSurface distance = new ManhattanSurface();
-        Assertions.assertEquals(6, distance.manhattanSurface(31, "Day3TestExample3_Wire1.txt", "Day3TestExample3_WIre2.txt"));
+        Assertions.assertEquals(6, distance.manhattanSurface(31, "Day3TestExample3_Wire1.txt", "Day3TestExample3_Wire2.txt"));
     }
 }

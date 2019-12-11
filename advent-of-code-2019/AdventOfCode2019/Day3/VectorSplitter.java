@@ -1,4 +1,4 @@
-package AdventOfCode2019.Day3.Problem_1_2;
+package Day3;
 
 public class VectorSplitter {
     public int[] splitter(String a) {
