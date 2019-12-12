@@ -11,12 +11,9 @@ import static java.lang.Math.ceil;
 public class ManhattanSurface {
     private int count;
 
-    public double manhattanSurface(int dimensions, String a, String b) throws Exception {
+    public double[] manhattanSurface(int dimensions, String a, String b) throws Exception {
         Scanner scanner1 = new Scanner(new File(a));
-//        Scanner scanner4 = new Scanner(new File(a));
         Scanner scanner2 = new Scanner(new File(b));
-//        Scanner scanner3 = new Scanner(new File(b));
-        Scanner keyboard = new Scanner(System.in);
         ArrayList<String> instructions1 = new ArrayList<>();
         ArrayList<String> instructions2 = new ArrayList<>();
         ArrayList<String> instructions3 = new ArrayList<>();
@@ -34,12 +31,6 @@ public class ManhattanSurface {
         }
         int wire1Loops = instructions1.size();
         int wire2Loops = instructions2.size();
-//        while (scanner3.hasNext()) {
-//            instructions3.add(scanner3.next());
-//        }
-//        while (scanner4.hasNext()) {
-//            instructions4.add(scanner4.next());
-//        }
         int[][] surface = new int[dimensions][dimensions];
         int iteration = 0;
         while (wire1Loops > 0) {
@@ -139,27 +130,24 @@ public class ManhattanSurface {
             }
         }
         Collections.sort(originDistances);
+//        for (int i = 0; i < dimensions; i++) {
+//            System.err.println(Arrays.toString(surface[i]));
+//        }
         System.out.println("Sorted list of distances:: " + originDistances);
         System.out.println("Amount of distances calculated:: " + originDistances.size());
         System.out.println("Directions inputted for each wire:: " + count / 2);
-        for (int i = 0; i < dimensions; i++) {
-            System.err.println(Arrays.toString(surface[i]));
+        double result = wireTracer(originX, originY, instructions1, instructions2, surface).get(0);
+        if (originDistances.get(0) == 0) {
+            double bruh = originDistances.get(1);
+            return new double[]{bruh, result};
+        } else {
+            double bruh = originDistances.get(0);
+            return new double[]{bruh, result};
         }
-//        System.out.println("Do you want to find the shortest path length?");
-//        String choice = keyboard.next();
-        String choice = "yes";
-        if (choice.equals("yes")) {
-            int result = wireTracer(originX, originY, instructions4, instructions3, surface).get(0);
-            System.out.println("The shortest path length to an intersection is " + result);
-//)
-        }
-        if (originDistances.get(0) == 0)
-            return originDistances.get(1);
-        else
-            return originDistances.get(0);
     }
 
-    private List<Integer> wireTracer(int originX, int originY, ArrayList<String> instructions1, ArrayList<String> instructions2, int[][] surface) {
+    private List<Integer> wireTracer(int originX, int originY, ArrayList<
+            String> instructions1, ArrayList<String> instructions2, int[][] surface) {
         VectorSplitter vector = new VectorSplitter();
         int positionX = originX;
         int positionY = originY;
@@ -176,7 +164,6 @@ public class ManhattanSurface {
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY][positionX + x] == 3) {
                             pathLength2 = cordFinder(positionX + x, positionY, originX, originY, instructions2);
-                            print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
                         pathLength++;
@@ -187,7 +174,6 @@ public class ManhattanSurface {
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY + x][positionX] == 3) {
                             pathLength2 = cordFinder(positionX, positionY + x, originX, originY, instructions2);
-                            print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
                         pathLength++;
@@ -198,7 +184,6 @@ public class ManhattanSurface {
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY][positionX - x] == 3) {
                             pathLength2 = cordFinder(positionX - x, positionY, originX, originY, instructions2);
-                            print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
                         pathLength++;
@@ -209,7 +194,6 @@ public class ManhattanSurface {
                     for (int x = 0; x < distance; x++) {
                         if (surface[positionY - x][positionX] == 3) {
                             pathLength2 = cordFinder(positionX - originX, positionY - x, originX, originY, instructions2);
-                            print(pathLength, pathLength2);
                             total.add(pathLength + pathLength2);
                         }
                         pathLength++;
@@ -272,14 +256,14 @@ public class ManhattanSurface {
 
     }
 
-    private void wire2Path(int pathlength, String s) {
-        System.out.println("Wire 2 Path Length:: " + pathlength + s);
-    }
-
-    private void wire1Path(String s, int pathLength) {
-        System.out.println("Wire 1 Path Length:: " + pathLength + s);
-    }
-
+//    private void wire2Path(int pathlength, String s) {
+//        System.out.println("Wire 2 Path Length:: " + pathlength + s);
+//    }
+//
+//    private void wire1Path(String s, int pathLength) {
+//        System.out.println("Wire 1 Path Length:: " + pathLength + s);
+//    }
+//
     private void print(int pathLength, int pathLength2) {
         System.out.println("Wire 1 path length:: " + pathLength);
         System.out.println("Wire 2 path length:: " + pathLength2);

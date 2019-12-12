@@ -7,13 +7,11 @@ import adventofcode2019.Day3.ManhattanSurface;
 import java.util.Scanner;
 
 public class LabMain {
-    private static int x = 0;
-
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Which day would you like to run? Enter EXIT to exit the program.");
-        String choice = keyboard.next();
-        while (x == 0) {
+        while (true) {
+            System.out.println("Which day would you like to run? Enter EXIT to exit the program.");
+            String choice = keyboard.next();
             switch (choice.toUpperCase()) {
                 case "DAY1":
                     //AoC Day1
@@ -32,13 +30,18 @@ public class LabMain {
                 case "DAY3":
                     ManhattanSurface surface = new ManhattanSurface();
                     try {
-                        System.out.println("Manhattan Distance:: " + surface.manhattanSurface(12001, "Day3_Wire1.txt", "Day3_Wire2.txt"));
+                        double[] wires = surface.manhattanSurface(12001, "Day3_Wire1.txt", "Day3_Wire2.txt");
+                        System.out.println("Manhattan Distance:: " + wires[0]);
+                        System.out.println("Shortest Path:: " + wires[1]);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
                 case "EXIT":
-                    x = 42;
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Input invalid, please try again!");
                     break;
             }
         }

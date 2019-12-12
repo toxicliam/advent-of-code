@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class FuelCounter {
     public int fakeFuel(double a) {
-        return (int) (Math.round(a / 3) - 2);
+        return (int) (Math.floor(a / 3) - 2);
     }
 
     public int actualFuel(double a) {
