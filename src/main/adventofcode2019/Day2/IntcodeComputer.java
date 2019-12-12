@@ -26,7 +26,7 @@ public class IntcodeComputer {
                     e2 = opcodes.get(opcodes.get(programCounter + 2));
                     element = e1 + e2;
                     opcodes.set(index, element);
-                    System.out.println(opcodes);
+//                    System.out.println(opcodes);
                     break;
                 case 2:
                     index = opcodes.get(programCounter + 3);
@@ -34,7 +34,7 @@ public class IntcodeComputer {
                     e2 = opcodes.get(opcodes.get(programCounter + 2));
                     element = (e1 * e2);
                     opcodes.set(index, element);
-                    System.out.println(opcodes);
+//                    System.out.println(opcodes);
                     break;
                 default:
                     throw new Exception("Switch Statement Error");
