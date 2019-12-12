@@ -1,4 +1,4 @@
-package adventofcode2019.Day2.Problem_1;
+package adventofcode2019.Day2;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ public class IntcodeComputer {
         while (scanner.hasNextInt()) {
             opcodes.add(scanner.nextInt());
         }
-//        Integer[] array = opcodes.toArray(new Integer[opcodes.size()]);
         int programCounter = 0;
         int index;
         int element;
