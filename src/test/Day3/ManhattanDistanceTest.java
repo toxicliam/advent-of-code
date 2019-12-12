@@ -1,8 +1,8 @@
 package Day3;
 
+import adventofcode2019.Day3.ManhattanSurface;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import Day3.ManhattanSurface;
 
 public class ManhattanDistanceTest {
     @Test
