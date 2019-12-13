@@ -3,6 +3,7 @@ package adventofcode2019;
 import adventofcode2019.Day1.FuelCounter;
 import adventofcode2019.Day2.IntcodeComputer;
 import adventofcode2019.Day3.ManhattanSurface;
+import adventofcode2019.Day4.PasswordFinder;
 
 import java.util.Scanner;
 
@@ -16,13 +17,13 @@ public class LabMain {
                 case "DAY1":
                     //AoC Day1
                     FuelCounter code = new FuelCounter();
-                    System.out.println(code.fuel("Day1.txt"));
+                    printInt(code.fuel("Day1.txt"));
                     break;
                 case "DAY2":
                     //AoC Day2
                     IntcodeComputer computer = new IntcodeComputer();
                     try {
-                        System.out.println(computer.computer("Day2.txt")[0]);
+                        printInt(computer.computer("Day2.txt")[0]);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -31,19 +32,35 @@ public class LabMain {
                     ManhattanSurface surface = new ManhattanSurface();
                     try {
                         double[] wires = surface.manhattanSurface(12001, "Day3_Wire1.txt", "Day3_Wire2.txt");
-                        System.out.println("Manhattan Distance:: " + wires[0]);
-                        System.out.println("Shortest Path:: " + wires[1]);
+                        printStringDouble("Manhattan Distance:: ", wires[0]);
+                        printStringDouble("Shortest Path:: ", wires[1]);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    break;
+                case "DAY4":
+                    PasswordFinder password = new PasswordFinder();
+                    printInt(password.rangeSearch(136818, 685979));
                     break;
                 case "EXIT":
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Input invalid, please try again!");
+                    printString("Input invalid, please try again!");
                     break;
             }
         }
+    }
+
+    private static void printInt(int a) {
+        System.out.println(a);
+    }
+
+    private static void printStringDouble(String a, double b) {
+        System.out.println(a + b);
+    }
+
+    private static void printString(String a) {
+        System.out.println(a);
     }
 }
