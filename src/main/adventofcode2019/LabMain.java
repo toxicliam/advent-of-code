@@ -11,19 +11,19 @@ public class LabMain {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         while (true) {
-            System.out.println("Which day would you like to run? Enter EXIT to exit the program.");
+            System.out.println("Which day would you like to run? Enter EXIT to exit the program." );
             String choice = keyboard.next();
             switch (choice.toUpperCase()) {
                 case "DAY1":
                     //AoC Day1
                     FuelCounter code = new FuelCounter();
-                    printInt(code.fuel("Day1.txt"));
+                    printInt(code.fuel("Day1.txt" ));
                     break;
                 case "DAY2":
                     //AoC Day2
                     IntcodeComputer computer = new IntcodeComputer();
                     try {
-                        printInt(computer.computer("Day2.txt")[0]);
+                        printInt(computer.computer("Day2.txt" )[0]);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -31,7 +31,7 @@ public class LabMain {
                 case "DAY3":
                     ManhattanSurface surface = new ManhattanSurface();
                     try {
-                        double[] wires = surface.manhattanSurface(12001, "Day3_Wire1.txt", "Day3_Wire2.txt");
+                        double[] wires = surface.manhattanSurface(12001, "Day3_Wire1.txt", "Day3_Wire2.txt" );
                         printStringDouble("Manhattan Distance:: ", wires[0]);
                         printStringDouble("Shortest Path:: ", wires[1]);
                     } catch (Exception e) {
@@ -40,13 +40,19 @@ public class LabMain {
                     break;
                 case "DAY4":
                     PasswordFinder password = new PasswordFinder();
-                    printInt(password.rangeSearch("136818", "685979"));
+                    printString("Would you like to find the first or second password?" );
+                    String choices = keyboard.next();
+                    if (choices.toUpperCase().equals("FIRST" )) {
+                        printInt(password.rangeSearch("136818", "685979" ).size());
+                    }else{
+                        printInt(password.rangeSearch2("136818", "685979"));
+                    }
                     break;
                 case "EXIT":
                     System.exit(0);
                     break;
                 default:
-                    printString("Input invalid, please try again!");
+                    printString("Input invalid, please try again!" );
                     break;
             }
         }
