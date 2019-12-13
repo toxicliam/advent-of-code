@@ -40,7 +40,7 @@ public class LabMain {
                     break;
                 case "DAY4":
                     PasswordFinder password = new PasswordFinder();
-                    printInt(password.rangeSearch(136818, 685979));
+                    printInt(password.rangeSearch("136818", "685979"));
                     break;
                 case "EXIT":
                     System.exit(0);

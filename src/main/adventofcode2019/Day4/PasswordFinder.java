@@ -1,40 +1,38 @@
 package adventofcode2019.Day4;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PasswordFinder {
-    public int rangeSearch(int a, int b) {
-        List<Integer> answer = new ArrayList<>();
-        int run = 0;
-        for (int x = a; x < b; x++) {
-            List<Integer> digit = new ArrayList<>();
-            int fail = 0;
-            while (x > 0) {
-                int lastDigit = x % 10;
-                digit.add(lastDigit);
-                x = x / 10;
-            }
-            Collections.reverse(digit);
-            for (int z = 0; z < digit.size() - 1; z++) {
-                if (digit.get(z) > digit.get(z + 1)) {
-                    continue;
-                }
-                if (run == 0) {
-                    for (int y = 0; y < digit.size() - 1; y++) {
-                        if (!((digit.get(y)).equals(digit.get(y + 1)))) {
-                            fail++;
-                        }
-                    }
-                    run++;
+    public int rangeSearch(String a, String b) {
+        int max = Integer.parseInt(b) - Integer.parseInt(a);
+        List<Integer> answers = new ArrayList<>();
+        boolean skip = false;
+        int bottom = Integer.parseInt(a);
+        for (int x = bottom + 1; x < bottom + max; x++) {
+            String num = String.valueOf(x);
+            int pass = 0;
+            for (int z = 0; z < a.length() - 1; z++) {
+                char first = num.charAt(z);
+                char second = num.charAt(z + 1);
+                if (first == second) {
+                    pass++;
                 }
             }
-            if (fail < digit.size() - 1) {
-                answer.add(a + x);
+            for (int z = 0; z < a.length() - 1; z++) {
+                char first = num.charAt(z);
+                char second = num.charAt(z + 1);
+                if (first > second) {
+                    skip = true;
+                    break;
+                }
             }
-            System.out.println("System ran successfully");
+            if (!skip) {
+                if (pass > a.length() - 1) {
+                    answers.add(Integer.parseInt(num));
+                }
+            }
         }
-        return answer.size();
+        return answers.size();
     }
 }
