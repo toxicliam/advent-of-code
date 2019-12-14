@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PasswordFinder {
-    public ArrayList<Integer> rangeSearch(String a, String b) {
+    public ArrayList<Integer> rangeSearch(String a, String b) throws Exception {
         int max = Integer.parseInt(b) - Integer.parseInt(a);
         ArrayList<Integer> answers = new ArrayList<>();
         int bottom = Integer.parseInt(a);
@@ -36,7 +36,7 @@ public class PasswordFinder {
         return answers;
     }
 
-    public int rangeSearch2(String a, String b) {
+    public int rangeSearch2(String a, String b) throws Exception {
         ArrayList<Integer> source = rangeSearch(a, b);
         List<Integer> answers = new ArrayList<>();
         int max = source.size();
