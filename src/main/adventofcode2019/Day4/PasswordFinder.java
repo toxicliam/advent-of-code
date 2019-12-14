@@ -8,8 +8,8 @@ public class PasswordFinder {
         int max = Integer.parseInt(b) - Integer.parseInt(a);
         ArrayList<Integer> answers = new ArrayList<>();
         int bottom = Integer.parseInt(a);
-        for (int x = bottom + 1; x < bottom + max; x++) {
-            String num = String.valueOf(x);
+        for (int x = 1; x < max; x++) {
+            String num = String.valueOf(x + bottom);
             int pass = 0;
             boolean skip = false;
             for (int z = 0; z < a.length() - 1; z++) {
@@ -38,19 +38,32 @@ public class PasswordFinder {
 
     public int rangeSearch2(String a, String b) {
         ArrayList<Integer> source = rangeSearch(a, b);
-        System.out.println(source.size());
         List<Integer> answers = new ArrayList<>();
-        int max = Integer.parseInt(b) - Integer.parseInt(a);
+        int max = source.size();
+        printInt(max);
         int bottom = Integer.parseInt(a);
-        for (int z = 1; z < max - 2; z++) {
-            String num = String.valueOf(source.get(z - 1));
+        for (int z = 0; z < max - 1; z++) {
+            String num = String.valueOf(source.get(z));
+            int size = num.length();
             int pass = 0;
-            for (int x = 0; x < num.length() - 2; x++) {
-                char first = num.charAt(x);
-                char second = num.charAt(x + 1);
-                char third = num.charAt(x + 2);
-                if (first == second && second != third) {
-                    pass++;
+            ArrayList<Character> numArray = new ArrayList<>();
+            for (int x = 0; x <= size - 1; x++) {
+                numArray.add(num.charAt(x));
+            }
+            printInt(numArray.size());
+            if (numArray.toArray()[0] == numArray.toArray()[1] && numArray.toArray()[1] != numArray.toArray()[2])
+                pass++;
+            for (int x = 1; x < size - 1; x++) {
+                char first = numArray.get(x - 1);
+                char second = numArray.get(x);
+                char third = numArray.get(x + 1);
+                if (x + 2 < size) {
+                    char fourth = numArray.get(x + 2);
+                    if (second == third && second != first && second != fourth)
+                        pass++;
+                } else {
+                    if (numArray.toArray()[size - 2] == numArray.toArray()[size - 1] && numArray.toArray()[size - 2] != numArray.toArray()[size - 3])
+                        pass++;
                 }
             }
             if (pass > 0) {
@@ -58,5 +71,9 @@ public class PasswordFinder {
             }
         }
         return answers.size();
+    }
+
+    private void printInt(int a) {
+        System.out.println(a);
     }
 }
