@@ -2,7 +2,6 @@ package adventofcode2019.Day5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.security.cert.CollectionCertStoreParameters;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -121,6 +120,9 @@ public class ModifiedComputer {
                         System.out.println(element1);
                         pos += 2;
                         loops--;
+                        break;
+                    case "99":
+                        loops = 0;
                         break;
                 }
             }

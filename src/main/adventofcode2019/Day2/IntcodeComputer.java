@@ -6,7 +6,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class IntcodeComputer {
-
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
+//NEED TO ADD PROBLEM 2
     public Integer[] computer(String a) throws Exception {
         Scanner scanner = new Scanner(new File(a));
         List<Integer> opcodes = new ArrayList<>();
