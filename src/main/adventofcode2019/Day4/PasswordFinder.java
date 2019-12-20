@@ -40,7 +40,6 @@ public class PasswordFinder {
         ArrayList<Integer> source = rangeSearch(a, b);
         List<Integer> answers = new ArrayList<>();
         int max = source.size();
-        printInt(max);
         int bottom = Integer.parseInt(a);
         for (int z = 0; z < max - 1; z++) {
             String num = String.valueOf(source.get(z));
@@ -50,7 +49,6 @@ public class PasswordFinder {
             for (int x = 0; x <= size - 1; x++) {
                 numArray.add(num.charAt(x));
             }
-            printInt(numArray.size());
             if (numArray.toArray()[0] == numArray.toArray()[1] && numArray.toArray()[1] != numArray.toArray()[2])
                 pass++;
             for (int x = 1; x < size - 1; x++) {
@@ -71,9 +69,5 @@ public class PasswordFinder {
             }
         }
         return answers.size();
-    }
-
-    private void printInt(int a) {
-        System.out.println(a);
     }
 }
