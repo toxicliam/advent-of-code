@@ -5,7 +5,9 @@ import adventofcode2019.Day2.IntcodeComputer;
 import adventofcode2019.Day3.ManhattanSurface;
 import adventofcode2019.Day4.PasswordFinder;
 import adventofcode2019.Day5.ModifiedComputer;
+import adventofcode2019.Day5.UltraModifiedComputer;
 
+import javax.swing.plaf.multi.MultiLookAndFeel;
 import java.util.Scanner;
 
 public class LabMain {
@@ -58,11 +60,18 @@ public class LabMain {
                     }
                     break;
                 case "DAY5":
-                    ModifiedComputer modified = new ModifiedComputer();
-                    try {
-                        modified.modified("Day5.txt");
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    System.out.println("Would you like to run the modified or ultra computer?");
+                    String choices2 = keyboard.next();
+                    if (choices2.toUpperCase().equals("MODIFIED")) {
+                        ModifiedComputer modified = new ModifiedComputer();
+                        try {
+                            modified.modified("Day5.txt");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        UltraModifiedComputer ultra = new UltraModifiedComputer();
+                        ultra.modified("Day5.txt");
                     }
                 case "EXIT":
                     System.exit(0);
