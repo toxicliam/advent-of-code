@@ -12,12 +12,10 @@ public class ManhattanSurface {
     private int count;
 
     public double[] manhattanSurface(int dimensions, String a, String b) throws Exception {
-        Scanner scanner1 = new Scanner(new File(a));
-        Scanner scanner2 = new Scanner(new File(b));
+        Scanner scanner1 = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
+        Scanner scanner2 = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(b)).getFile()));
         ArrayList<String> instructions1 = new ArrayList<>();
         ArrayList<String> instructions2 = new ArrayList<>();
-        ArrayList<String> instructions3 = new ArrayList<>();
-        ArrayList<String> instructions4 = new ArrayList<>();
         VectorSplitter vector = new VectorSplitter();
         int originX = (int) ceil(dimensions / 2.0);
         int originY = (int) ceil(dimensions / 2.0);
@@ -254,19 +252,6 @@ public class ManhattanSurface {
         }
         return pathLength;
 
-    }
-
-//    private void wire2Path(int pathlength, String s) {
-//        System.out.println("Wire 2 Path Length:: " + pathlength + s);
-//    }
-//
-//    private void wire1Path(String s, int pathLength) {
-//        System.out.println("Wire 1 Path Length:: " + pathLength + s);
-//    }
-//
-    private void print(int pathLength, int pathLength2) {
-        System.out.println("Wire 1 path length:: " + pathLength);
-        System.out.println("Wire 2 path length:: " + pathLength2);
     }
 }
 

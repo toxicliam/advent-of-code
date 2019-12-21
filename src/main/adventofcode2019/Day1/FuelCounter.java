@@ -3,6 +3,7 @@ package adventofcode2019.Day1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class FuelCounter {
@@ -24,7 +25,7 @@ public class FuelCounter {
     public int fuel(String a) {
         Scanner scanner1 = null;
         try {
-            scanner1 = new Scanner(new File(a));
+            scanner1 = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

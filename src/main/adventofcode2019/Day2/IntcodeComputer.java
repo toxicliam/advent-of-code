@@ -3,23 +3,12 @@ package adventofcode2019.Day2;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class IntcodeComputer {
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
-//NEED TO ADD PROBLEM 2
     public Integer[] computer(String a) throws Exception {
-        Scanner scanner = new Scanner(new File(a));
+        Scanner scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
         List<Integer> opcodes = new ArrayList<>();
         while (scanner.hasNextInt()) {
             opcodes.add(scanner.nextInt());
