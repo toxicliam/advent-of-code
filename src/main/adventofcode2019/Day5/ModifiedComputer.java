@@ -76,13 +76,13 @@ public class ModifiedComputer {
                         try {
                             parameter2 = sb1.reverse().charAt(3);
                         } catch (IndexOutOfBoundsException e) {
-                            parameter2 = -1;
+                            parameter2 = 0;
                         }
                         if (parameter1 == 0)
                             element1 = intcode.get(intcode.get(pos + 1));
                         else
                             element1 = intcode.get(pos + 1);
-                        if (parameter2 == 0 || parameter2 == -1)
+                        if (parameter2 == 0)
                             element2 = intcode.get(intcode.get(pos + 2));
                         else
                             element2 = intcode.get(pos + 2);
@@ -96,13 +96,13 @@ public class ModifiedComputer {
                         try {
                             parameter2 = sb2.reverse().charAt(3);
                         } catch (IndexOutOfBoundsException e) {
-                            parameter2 = -1;
+                            parameter2 = 0;
                         }
                         if (parameter1 == 0)
                             element1 = intcode.get(intcode.get(pos + 1));
                         else
                             element1 = intcode.get(pos + 1);
-                        if (parameter2 == 0 || parameter2 == -1)
+                        if (parameter2 == 0)
                             element2 = intcode.get(intcode.get(pos + 2));
                         else
                             element2 = intcode.get(pos + 2);
