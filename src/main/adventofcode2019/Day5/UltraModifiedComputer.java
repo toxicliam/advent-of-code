@@ -46,7 +46,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (String.valueOf(sb.charAt(2)).equals("0"))
+                        if (String.valueOf(sb.charAt(3)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -80,7 +80,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (String.valueOf(sb.charAt(2)).equals("0"))
+                        if (String.valueOf(sb.charAt(3)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -143,7 +143,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (String.valueOf(sb.charAt(2)).equals("0"))
+                        if (String.valueOf(sb.charAt(3)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -160,11 +160,13 @@ public class UltraModifiedComputer {
                     else
                         element2 = intcode.get(pos + 2);
                     //do the actual operation
-                    if (element1 != 0)
+                    if (element1 != 0) {
+                        loops += pos - element2;
                         pos = element2;
-                    else
+                    } else {
                         pos += 3;
-                    loops += pos - element2;
+                        loops--;
+                    }
                     break;
                 case '6':
                     try {
@@ -177,7 +179,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (String.valueOf(sb.charAt(2)).equals("0"))
+                        if (String.valueOf(sb.charAt(3)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -194,11 +196,13 @@ public class UltraModifiedComputer {
                     else
                         element2 = intcode.get(pos + 2);
                     //do the actual operation
-                    if (element1 == 0)
+                    if (element1 == 0) {
+                        loops += pos - element2;
                         pos = element2;
-                    else
+                    } else {
                         pos += 3;
-                    loops += pos - element2;
+                        loops--;
+                    }
                     break;
                 case '7':
                     try {
@@ -211,7 +215,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (String.valueOf(sb.charAt(2)).equals("0"))
+                        if (String.valueOf(sb.charAt(3)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -247,7 +251,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (String.valueOf(sb.charAt(2)).equals("0"))
+                        if (String.valueOf(sb.charAt(3)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
