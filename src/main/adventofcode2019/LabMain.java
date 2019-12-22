@@ -73,6 +73,7 @@ public class LabMain {
                         UltraModifiedComputer ultra = new UltraModifiedComputer();
                         ultra.modified("Day5.txt");
                     }
+                    break;
                 case "EXIT":
                     System.exit(0);
                     break;

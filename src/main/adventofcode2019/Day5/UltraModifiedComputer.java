@@ -38,7 +38,7 @@ public class UltraModifiedComputer {
                 case '1':
                     //reverse once in order to guaruntee the order of instructions
                     try {
-                        if (sb.reverse().charAt(2) == 48)
+                        if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
                             parameter1 = 0;
                         else
                             parameter1 = 1;
@@ -46,7 +46,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (sb.charAt(3) == 48)
+                        if (String.valueOf(sb.charAt(2)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -71,7 +71,7 @@ public class UltraModifiedComputer {
                 case '2':
                     //reverse once in order to guaruntee the order of instructions
                     try {
-                        if (sb.reverse().charAt(2) == 48)
+                        if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
                             parameter1 = 0;
                         else
                             parameter1 = 1;
@@ -80,7 +80,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (sb.charAt(3) == 48)
+                        if (String.valueOf(sb.charAt(2)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -114,7 +114,7 @@ public class UltraModifiedComputer {
                 case '4':
                     //reverse to guaruntee placement
                     try {
-                        if (sb.reverse().charAt(1) == 48)
+                        if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
                             parameter1 = 0;
                         else
                             parameter1 = 1;
@@ -134,7 +134,7 @@ public class UltraModifiedComputer {
                     break;
                 case '5':
                     try {
-                        if (sb.reverse().charAt(2) == 48)
+                        if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
                             parameter1 = 0;
                         else
                             parameter1 = 1;
@@ -143,7 +143,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (sb.charAt(3) == 48)
+                        if (String.valueOf(sb.charAt(2)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -162,11 +162,13 @@ public class UltraModifiedComputer {
                     //do the actual operation
                     if (element1 != 0)
                         pos = element2;
-                    loops--;
+                    else
+                        pos += 3;
+                    loops += pos - element2;
                     break;
                 case '6':
                     try {
-                        if (sb.reverse().charAt(2) == 48)
+                        if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
                             parameter1 = 0;
                         else
                             parameter1 = 1;
@@ -175,7 +177,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (sb.charAt(3) == 48)
+                        if (String.valueOf(sb.charAt(2)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -194,11 +196,13 @@ public class UltraModifiedComputer {
                     //do the actual operation
                     if (element1 == 0)
                         pos = element2;
-                    loops--;
+                    else
+                        pos += 3;
+                    loops += pos - element2;
                     break;
                 case '7':
                     try {
-                        if (sb.reverse().charAt(2) == 48)
+                        if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
                             parameter1 = 0;
                         else
                             parameter1 = 1;
@@ -207,7 +211,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (sb.charAt(3) == 48)
+                        if (String.valueOf(sb.charAt(2)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -234,7 +238,7 @@ public class UltraModifiedComputer {
                     break;
                 case '8':
                     try {
-                        if (sb.reverse().charAt(2) == 48)
+                        if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
                             parameter1 = 0;
                         else
                             parameter1 = 1;
@@ -243,7 +247,7 @@ public class UltraModifiedComputer {
                         parameter1 = 0;
                     }
                     try {
-                        if (sb.charAt(3) == 48)
+                        if (String.valueOf(sb.charAt(2)).equals("0"))
                             parameter2 = 0;
                         else
                             parameter2 = 1;
@@ -260,7 +264,7 @@ public class UltraModifiedComputer {
                     else
                         element2 = intcode.get(pos + 2);
                     //do the actual operation
-                    if (element1 > element2)
+                    if (element1 == element2)
                         intcode.set(intcode.get(pos + 3), 1);
                     else
                         intcode.set(intcode.get(pos + 3), 0);
