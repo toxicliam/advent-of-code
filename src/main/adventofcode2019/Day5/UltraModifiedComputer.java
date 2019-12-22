@@ -7,17 +7,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class UltraModifiedComputer {
-    public ArrayList<Integer> modified(String a) {
+    public ArrayList<Integer> modified(String a) throws FileNotFoundException {
         //reading my file with input
-        Scanner scanner = null;
         Scanner keyboard = new Scanner(System.in);
         ArrayList<Integer> intcode = new ArrayList<>();
-        try {
-            scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assert scanner != null;
+        Scanner scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
         while (scanner.hasNextInt()) {
             intcode.add(scanner.nextInt());
         }
