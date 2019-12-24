@@ -6,12 +6,14 @@ import adventofcode2019.Day3.ManhattanSurface;
 import adventofcode2019.Day4.PasswordFinder;
 import adventofcode2019.Day5.ModifiedComputer;
 import adventofcode2019.Day5.UltraModifiedComputer;
+import adventofcode2019.Day6.ChecksumCalc;
 
 import javax.swing.plaf.multi.MultiLookAndFeel;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LabMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner keyboard = new Scanner(System.in);
         while (true) {
             System.out.println("Which day would you like to run? Enter EXIT to exit the program.");
@@ -74,6 +76,9 @@ public class LabMain {
                         ultra.modified("Day5.txt");
                     }
                     break;
+                case "DAY6":
+                    ChecksumCalc orbitCount = new ChecksumCalc();
+                    System.out.println(orbitCount.checksums("Day6.txt"));
                 case "EXIT":
                     System.exit(0);
                     break;
