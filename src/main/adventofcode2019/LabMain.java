@@ -7,6 +7,7 @@ import adventofcode2019.Day4.PasswordFinder;
 import adventofcode2019.Day5.ModifiedComputer;
 import adventofcode2019.Day5.UltraModifiedComputer;
 import adventofcode2019.Day6.ChecksumCalc;
+import adventofcode2019.Day7.AmplifiersSeries;
 
 import javax.swing.plaf.multi.MultiLookAndFeel;
 import java.io.FileNotFoundException;
@@ -79,6 +80,9 @@ public class LabMain {
                 case "DAY6":
                     ChecksumCalc orbitCount = new ChecksumCalc();
                     System.out.println(orbitCount.checksums("Day6.txt"));
+                case "DAY7":
+                    AmplifiersSeries amps = new AmplifiersSeries();
+                    System.out.println(amps.series("Day7.txt"));
                 case "EXIT":
                     System.exit(0);
                     break;

@@ -23,10 +23,7 @@ public class ChecksumCalc {
             StringTokenizer tokenizer = new StringTokenizer(instructions.get(x), ")");
             while (tokenizer.hasMoreTokens()) {
                 String planet = tokenizer.nextToken();
-                if (planetIndex.get(planet) == null) {
-                    planetIndex.put(planet, new LinkedList.Node(planet));
-
-                }
+                planetIndex.putIfAbsent(planet, new LinkedList.Node(planet));
             }
             x++;
         }
@@ -35,17 +32,17 @@ public class ChecksumCalc {
             StringTokenizer tokenizer = new StringTokenizer(instructions.get(z), ")");
             String planet1 = tokenizer.nextToken();
             String planet2 = tokenizer.nextToken();
-            if (z == 0)
-                orbits.head.next = planetIndex.get(planet1);
-            planetIndex.get(planet1).next = planetIndex.get(planet2);
+            planetIndex.get(planet1).list.add(planetIndex.get(planet2));
             z++;
         }
-        LinkedList.Node n = orbits.head;
-        int orbitCount = 0;
-        while (n != null) {
-            orbitCount++;
-            n = n.next;
+        return planetIterator(planetIndex.get("COM"), 0);
+    }
+
+    public int planetIterator(LinkedList.Node a, int path) {
+        int count = 0;
+        for (LinkedList.Node child : a.list) {
+            count += planetIterator(child, path + 1);
         }
-        return orbitCount;
+        return count + path;
     }
 }

@@ -1,16 +1,17 @@
 package adventofcode2019.Day6;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 class LinkedList {
 
-    Node head;
     static class Node {
         String data;
-        Node next;
+        List<Node> list = new ArrayList<>();
 
         Node(String d) {
             data = d;
-            next = null;
         }
 
     }
