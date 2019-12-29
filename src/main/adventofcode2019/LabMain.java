@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LabMain {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws Exception {
         Scanner keyboard = new Scanner(System.in);
         while (true) {
             System.out.println("Which day would you like to run? Enter EXIT to exit the program.");
@@ -23,43 +23,32 @@ public class LabMain {
                 case "DAY1":
                     //AoC Day1
                     FuelCounter code = new FuelCounter();
-                    printInt(code.fuel("Day1.txt"));
+                    int[] bigbrain = code.fuel("Day1.txt");
+                    System.out.println(bigbrain[0] + " pounds of fuel is needed for a ship of " + bigbrain[1] + " mass. \n");
                     break;
                 case "DAY2":
                     //AoC Day2
                     IntcodeComputer computer = new IntcodeComputer();
                     try {
-                        printInt(computer.computer("Day2.txt")[0]);
+                        System.out.println(computer.computer("Day2.txt")[0] + "\n");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
                 case "DAY3":
                     ManhattanSurface surface = new ManhattanSurface();
-                    try {
-                        double[] wires = surface.manhattanSurface(12001, "Day3_Wire1.txt", "Day3_Wire2.txt");
-                        printStringDouble("Manhattan Distance:: ", wires[0]);
-                        printStringDouble("Shortest Path:: ", wires[1]);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    double[] wires = surface.manhattanSurface(12001, "Day3_Wire1.txt", "Day3_Wire2.txt");
+                    System.out.println("Manhattan Distance:: " + wires[0] + "\n");
+                    System.out.println("Shortest Path:: " + wires[1] + "\n");
                     break;
                 case "DAY4":
                     PasswordFinder password = new PasswordFinder();
-                    printString("Would you like to find the first or second password?");
+                    System.out.print("Would you like to find the first or second password?");
                     String choices = keyboard.next();
                     if (choices.toUpperCase().equals("FIRST")) {
-                        try {
-                            printInt(password.rangeSearch("136818", "685979").size());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        System.out.println("There are " + password.rangeSearch("136818", "685979").size() + " viable passwords in the given range. \n");
                     } else {
-                        try {
-                            printInt(password.rangeSearch2("136818", "685979"));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        System.out.println("There are " + password.rangeSearch2("136818", "685979") + " vaible passwords in the given range. \n");
                     }
                     break;
                 case "DAY5":
@@ -67,11 +56,7 @@ public class LabMain {
                     String choices2 = keyboard.next();
                     if (choices2.toUpperCase().equals("MODIFIED")) {
                         ModifiedComputer modified = new ModifiedComputer();
-                        try {
-                            modified.modified("Day5.txt");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        modified.modified("Day5.txt");
                     } else {
                         UltraModifiedComputer ultra = new UltraModifiedComputer();
                         ultra.modified("Day5.txt");
@@ -79,29 +64,19 @@ public class LabMain {
                     break;
                 case "DAY6":
                     ChecksumCalc orbitCount = new ChecksumCalc();
-                    System.out.println(orbitCount.checksums("Day6.txt"));
+                    System.out.println(orbitCount.checksums("Day6.txt") + " direct and indirect orbits in the system. \n");
+                    break;
                 case "DAY7":
                     AmplifiersSeries amps = new AmplifiersSeries();
-                    System.out.println(amps.series("Day7.txt"));
+                    System.out.println("The maximum thruster output signal is " + amps.series("Day7.txt") + "\n");
+                    break;
                 case "EXIT":
                     System.exit(0);
                     break;
                 default:
-                    printString("Input invalid, please try again!");
+                    System.out.println("Input invalid, please try again! \n");
                     break;
             }
         }
-    }
-
-    private static void printInt(int a) {
-        System.out.println(a);
-    }
-
-    private static void printStringDouble(String a, double b) {
-        System.out.println(a + b);
-    }
-
-    private static void printString(String a) {
-        System.out.println(a);
     }
 }

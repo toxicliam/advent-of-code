@@ -22,7 +22,7 @@ public class FuelCounter {
         return fuel;
     }
 
-    public int fuel(String a) {
+    public int[] fuel(String a) {
         Scanner scanner1 = null;
         try {
             scanner1 = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
@@ -37,6 +37,7 @@ public class FuelCounter {
         int loops = instructions.size();
         int iteration = 0;
         int sum = 0;
+        int mass = 0;
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Would you like to calculate the actual fuel (a) or the theoretical fuel (t)?");
         String choice = keyboard.next();
@@ -44,16 +45,18 @@ public class FuelCounter {
             case "A":
                 for (int x = 0; x < loops; x++) {
                     sum += actualFuel(Integer.parseInt(instructions.get(iteration)));
+                    mass += Integer.parseInt(instructions.get(iteration));
                     iteration++;
                 }
                 break;
             case "T":
                 for (int x = 0; x < loops; x++) {
                     sum += fakeFuel(Integer.parseInt(instructions.get(iteration)));
+                    mass += Integer.parseInt(instructions.get(iteration));
                     iteration++;
                 }
                 break;
         }
-        return sum;
+        return new int[]{sum, mass};
     }
 }
