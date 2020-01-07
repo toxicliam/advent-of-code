@@ -33,11 +33,11 @@ public class HeapAlg {
     }
 
     private static List<String> printArray(int[] input) {
-        String setting = "";
+        StringBuilder setting = new StringBuilder();
         for (int t = 0; t <= 4; t++) {
-            setting = String.valueOf(input[t]);
+            setting.append(input[t]);
         }
-        phase.add(setting);
+        phase.add(setting.toString());
         return phase;
     }
 }

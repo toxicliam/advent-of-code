@@ -12,7 +12,6 @@ public class ChecksumCalc {
 
     public int checksums(String a) throws FileNotFoundException {
 
-        LinkedList orbits = new LinkedList();
         Scanner scanner1 = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
         ArrayList<String> instructions = new ArrayList<>();
         while (scanner1.hasNext()) {
