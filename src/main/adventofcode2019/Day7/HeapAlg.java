@@ -5,39 +5,45 @@ import java.util.List;
 
 public class HeapAlg {
     private static List<String> phase = new ArrayList<>();
+    private int h = 0;
+    private static int[] elements;
 
-    public List<String> printAllRecursive(
-            int n, int[] elements) {
-        while (true) {
+    public List<String> printAllRecursive(int n, int[] input) {
+        elements = input;
+        int x = 0;
+        while (x == 0) {
+            if (x == 0)
+                x = 1;
             if (n == 1) {
-                return printArray(elements);
-            } else {
+                printArray(elements);
+            } else if (n >= 0) {
                 for (int i = 0; i < n - 1; i++) {
                     printAllRecursive(n - 1, elements);
                     if (n % 2 == 0) {
-                        swap(elements, i, n - 1);
+                        swap(i, n - 1);
                     } else {
-                        swap(elements, 0, n - 1);
+                        swap(0, n - 1);
                     }
+                    printArray(elements);
                 }
-                printAllRecursive(n - 1, elements);
             }
+//            System.out.println(h);
+//            h++;
         }
-
+        return phase;
     }
 
-    private static void swap(int[] input, int a, int b) {
-        int tmp = input[a];
-        input[a] = input[b];
-        input[b] = tmp;
+    private static void swap(int a, int b) {
+        elements[b] = elements[a];
+        elements[a] = elements[b];
     }
 
-    private static List<String> printArray(int[] input) {
+    private static void printArray(int[] input) {
         StringBuilder setting = new StringBuilder();
         for (int t = 0; t <= 4; t++) {
             setting.append(input[t]);
         }
         phase.add(setting.toString());
-        return phase;
+
     }
 }
