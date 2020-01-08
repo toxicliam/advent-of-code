@@ -2,60 +2,75 @@ package adventofcode2019.Day7;
 
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class AmplifiersSeries {
+    private static List<String> perm = new ArrayList<>();
+
     public Integer series(String a) throws FileNotFoundException {
+
         List<Integer> output = new ArrayList<>();
-        HeapAlg heap = new HeapAlg();
         int[] phase = {0, 1, 2, 3, 4};
-        List<String> settings = heap.printAllRecursive(5, phase);
-        int amp4CodeInt = 0;
-        int amp3CodeInt = 0;
-        int amp2CodeInt = 0;
-        int amp1CodeInt = 0;
-        for (int i = 0; i < settings.size(); i++) {
+        printAllRecursive(5, phase);
+        int amp4CodeInt;
+        int amp3CodeInt;
+        int amp2CodeInt;
+        int amp1CodeInt;
+        for (int i = 0; i < perm.size(); i++) {
+            Map<Integer, String> setting = new HashMap<>();
             for (int j = 0; j <= 4; j++) {
-                AmpComputer computer = new AmpComputer();
-                if (j == 0)
-                    amp1CodeInt = computer.modified(a, Integer.parseInt(settings.get(i).substring(j, j + 1)), 0);
-                if (j == 1)
-                    amp2CodeInt = computer.modified(a, Integer.parseInt(settings.get(i).substring(j, j + 1)), amp1CodeInt);
-                if (j == 2)
-                    amp3CodeInt = computer.modified(a, Integer.parseInt(settings.get(i).substring(j, j + 1)), amp2CodeInt);
-                if (j == 3)
-                    amp4CodeInt = computer.modified(a, Integer.parseInt(settings.get(i).substring(j, j + 1)), amp3CodeInt);
-                if (j == 4)
-                    output.add(computer.modified(a, Integer.parseInt(settings.get(i).substring(j)), amp4CodeInt));
+                String h;
+                try {
+                    h = perm.get(i).substring(j, j + 1);
+                } catch (IndexOutOfBoundsException e) {
+                    h = perm.get(i).substring(j);
+                }
+                setting.putIfAbsent(j, h);
             }
+            AmpComputer computer = new AmpComputer();
+            amp1CodeInt = computer.modified(a, Integer.parseInt(setting.get(0)), 0);
+            amp2CodeInt = computer.modified(a, Integer.parseInt(setting.get(1)), amp1CodeInt);
+            amp3CodeInt = computer.modified(a, Integer.parseInt(setting.get(2)), amp2CodeInt);
+            amp4CodeInt = computer.modified(a, Integer.parseInt(setting.get(3)), amp3CodeInt);
+            output.add(computer.modified(a, Integer.parseInt(setting.get(4)), amp4CodeInt));
             System.out.println(i);
         }
         Collections.sort(output);
+        Collections.reverse(output);
         return output.get(0);
     }
 
-//    public List<Integer> recursion(String a, Map<Integer, String> phaseSetting, int i, int j) throws FileNotFoundException {
-//        AmpComputer computer = new AmpComputer();
-//        Map<Integer, Integer> output = new HashMap<>();
-//        List<Integer> finale = new ArrayList<>();
-//        while (i < phaseSetting.size()) {
-//            if (j < 5) {
-//                if (j == 0) {
-//                    output.put(j, computer.modified(a, Integer.parseInt(phaseSetting.get(i).substring(j, j + 1)), 0));
-//                } else {
-//                    output.put(j, computer.modified(a, Integer.parseInt(phaseSetting.get(i).substring(j, j + 1)), output.get(j - 1)));
-//                }
-//                j++;
-//                recursion(a, phaseSetting, i, j);
-//            }
-//            finale.add(output.get(4));
-//            i++;
-//        }
-//        Collections.sort(finale);
-//        return finale;
-//    }
+    public void printAllRecursive(int n, int[] input) {
+        if (n == 1) {
+            printArray(input);
+        } else {
+            printAllRecursive(n - 1, input);
+            for (int i = 0; i < n - 1; i++) {
+                if (n % 2 == 0) {
+                    swap(input, i, n - 1);
+                } else {
+                    swap(input, 0, n - 1);
+                }
+                printAllRecursive(n - 1, input);
+            }
+        }
+
+    }
+
+    private static void swap(int[] input, int a, int b) {
+        int tmp = input[a];
+        input[a] = input[b];
+        input[b] = tmp;
+    }
+
+    private static void printArray(int[] input) {
+        StringBuilder setting = new StringBuilder();
+        for (int t = 0; t <= 4; t++) {
+            setting.append(input[t]);
+        }
+        perm.add(setting.toString());
+
+    }
 }
 
 

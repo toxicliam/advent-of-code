@@ -3,13 +3,14 @@ package adventofcode2019.Day7;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class AmpComputer {
     public int modified(String a, int input1, int input2) throws FileNotFoundException {
         //reading my file with input
         ArrayList<Integer> intcode = new ArrayList<>();
-        Scanner scanner = new Scanner(new File(a).getAbsolutePath());
+        Scanner scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
         while (scanner.hasNextInt()) {
             intcode.add(scanner.nextInt());
         }
