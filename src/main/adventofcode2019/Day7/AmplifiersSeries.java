@@ -54,7 +54,6 @@ public class AmplifiersSeries {
                 printAllRecursive(n - 1, input);
             }
         }
-
     }
 
     private static void swap(int[] input, int a, int b) {
