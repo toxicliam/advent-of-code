@@ -9,11 +9,11 @@ public class FeedbackLoop {
     private static List<String> perm = new ArrayList<>();
     private FeedbackComputer computer = new FeedbackComputer();
     private int d = 0;
+    private Thread first, second, third, fourth, fifth;
 
-    public Integer series(String a) throws FileNotFoundException {
-
+    public Integer feedback(String a) throws FileNotFoundException {
         List<Integer> output = new ArrayList<>();
-        int[] phase = {0, 1, 2, 3, 4};
+        int[] phase = {5, 6, 7, 8, 9};
         printAllRecursive(5, phase);
         AtomicInteger amp5CodeInt = new AtomicInteger();
         AtomicInteger amp4CodeInt = new AtomicInteger();
@@ -31,52 +31,102 @@ public class FeedbackLoop {
                 }
                 setting.putIfAbsent(j, h);
             }
+
             Runnable amp1 = () -> {
                 if (d == 0) {
                     try {
                         amp1CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(0)), 0));
-                        d++;
-                    } catch (FileNotFoundException e) {
+                        Thread.sleep(-1);
+                        second.start();
+                    } catch (FileNotFoundException | InterruptedException e) {
                         e.printStackTrace();
                     }
                 } else {
                     try {
                         amp1CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(0)), Integer.parseInt(String.valueOf(amp5CodeInt))));
-                    } catch (FileNotFoundException e) {
+                        Thread.sleep(-1);
+                        second.run();
+                    } catch (FileNotFoundException | InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             };
             Runnable amp2 = () -> {
-                try {
-                    amp2CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(1)), Integer.parseInt(String.valueOf(amp1CodeInt))));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                if (d == 0) {
+                    try {
+                        amp2CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(1)), Integer.parseInt(String.valueOf(amp1CodeInt))));
+                        Thread.sleep(-1);
+                        third.start();
+                    } catch (FileNotFoundException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        amp2CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(1)), Integer.parseInt(String.valueOf(amp1CodeInt))));
+                        Thread.sleep(-1);
+                        third.run();
+                    } catch (FileNotFoundException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             };
             Runnable amp3 = () -> {
-                try {
-                    amp3CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(2)), Integer.parseInt(String.valueOf(amp2CodeInt))));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                if (d == 0) {
+                    try {
+                        amp3CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(2)), Integer.parseInt(String.valueOf(amp2CodeInt))));
+                        Thread.sleep(-1);
+                        fourth.start();
+                    } catch (FileNotFoundException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        amp3CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(2)), Integer.parseInt(String.valueOf(amp2CodeInt))));
+                        Thread.sleep(-1);
+                        fourth.run();
+                    } catch (FileNotFoundException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             };
             Runnable amp4 = () -> {
-                try {
-                    amp4CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(3)), Integer.parseInt(String.valueOf(amp3CodeInt))));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                if (d == 0) {
+                    try {
+                        amp4CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(3)), Integer.parseInt(String.valueOf(amp3CodeInt))));
+                        Thread.sleep(-1);
+                        fifth.start();
+                    } catch (FileNotFoundException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        amp4CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(3)), Integer.parseInt(String.valueOf(amp3CodeInt))));
+                        Thread.sleep(-1);
+                        fifth.run();
+                    } catch (FileNotFoundException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             };
             Runnable amp5 = () -> {
                 try {
                     amp5CodeInt.set(computer.modified(a, Integer.parseInt(setting.get(4)), Integer.parseInt(String.valueOf(amp4CodeInt))));
-                } catch (FileNotFoundException e) {
+                    Thread.sleep(-1);
+                    first.run();
+                    d++;
+                } catch (FileNotFoundException | InterruptedException e) {
                     e.printStackTrace();
                 }
+
             };
+            first = new Thread(amp1);
+            second = new Thread(amp2);
+            third = new Thread(amp3);
+            fourth = new Thread(amp4);
+            fifth = new Thread(amp5);
+            if (d == 0)
+                first.start();
 //            output.add(computer.modified(a, Integer.parseInt(setting.get(4)), amp4CodeInt.get()));
 //            System.out.println(i);
         }

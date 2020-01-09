@@ -8,9 +8,8 @@ import adventofcode2019.Day5.ModifiedComputer;
 import adventofcode2019.Day5.UltraModifiedComputer;
 import adventofcode2019.Day6.ChecksumCalc;
 import adventofcode2019.Day7.AmplifiersSeries;
+import adventofcode2019.Day7.Problem2.FeedbackLoop;
 
-import javax.swing.plaf.multi.MultiLookAndFeel;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LabMain {
@@ -67,8 +66,19 @@ public class LabMain {
                     System.out.println(orbitCount.checksums("Day6.txt") + " direct and indirect orbits in the system. \n");
                     break;
                 case "DAY7":
-                    AmplifiersSeries amps = new AmplifiersSeries();
-                    System.out.println("The maximum thruster output signal is " + amps.series("Day7.txt") + "\n");
+                    System.out.println("Would you like to run the series circuit or the feedback loop?");
+                    String choices3 = keyboard.next();
+                    switch (choices3.toUpperCase()) {
+                        case "SERIES":
+
+                            AmplifiersSeries amps = new AmplifiersSeries();
+                            System.out.println("The maximum thruster output signal is " + amps.series("Day7.txt") + "\n");
+                            break;
+                        case "FEEDBACK":
+                            FeedbackLoop pc = new FeedbackLoop();
+                            System.out.println(pc.feedback("Day7.txt") + "\n");
+                            break;
+                    }
                     break;
                 case "EXIT":
                     System.exit(0);
