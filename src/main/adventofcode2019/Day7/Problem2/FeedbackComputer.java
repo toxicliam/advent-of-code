@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class FeedbackComputer {
-    public int modified(String a, int input1, int input2) throws FileNotFoundException {
+    public Integer[] modified(String a, int input1, int input2, int initial) throws FileNotFoundException {
         //reading my file with input
         ArrayList<Integer> intcode = new ArrayList<>();
         Scanner scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
@@ -16,7 +16,7 @@ public class FeedbackComputer {
         }
         //initailizing variables
         int loops = intcode.size();
-        int pos = 0;
+        int pos = initial;
         int element1;
         int element2;
         int parameter1;
@@ -124,7 +124,7 @@ public class FeedbackComputer {
                     else
                         element1 = intcode.get(pos + 1);
                     //output output
-                    return element1;
+                    return new Integer[]{element1, pos + 1};
                 case '5':
                     try {
                         if (String.valueOf(sb.reverse().charAt(2)).equals("0"))
@@ -277,7 +277,7 @@ public class FeedbackComputer {
             }
 //            System.out.println(loops);
         }
-        return 6969;
+        return new Integer[]{6969};
     }
 
 }
