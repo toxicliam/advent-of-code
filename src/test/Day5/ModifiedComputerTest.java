@@ -1,6 +1,5 @@
 package Day5;
 
-import adventofcode2019.Day5.ModifiedComputer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +15,9 @@ public class ModifiedComputerTest {
         ModifiedComputer computer2 = new ModifiedComputer();
         Assertions.assertEquals(99, computer2.modified("Day5TestExample2.txt").get(4));
     }
-//    @Test
-////    public void test3() {
-////        ModifiedComputer computer3 = new ModifiedComputer();
-////        Assertions.assertEquals(2, computer3.modified("Day5TestExample3.txt").get(4));
-////    }
+    @Test
+    public void test3() {
+        ModifiedComputer computer3 = new ModifiedComputer();
+        Assertions.assertEquals(2, computer3.modified("Day5TestExample3.txt").get(4));
+    }
 }

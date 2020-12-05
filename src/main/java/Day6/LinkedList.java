@@ -1,4 +1,4 @@
-package adventofcode2019.Day6;
+package Day6;
 
 
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package Day6;
 
-import adventofcode2019.Day6.ChecksumCalc;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

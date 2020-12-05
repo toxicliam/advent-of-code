@@ -1,11 +1,10 @@
-package adventofcode2019.Day6;
+package Day6;
 
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import static java.lang.String.valueOf;
 
 public class ChecksumCalc {
     private int x = 0;
