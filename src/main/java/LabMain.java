@@ -50,7 +50,6 @@ public class LabMain {
                         System.out.println(surface.shortestPath().get(0) + "\n");
                     }
                 }
-
                 case "DAY4", "DAY 4", "DAY FOUR", "FOUR", "4" -> {
                     System.out.println("part 1 or 2?");
                     String choice1 = keyboard.next();
