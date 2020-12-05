@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class AmpComputer {
     public int modified(String a, int input1, int input2) throws FileNotFoundException {
         //reading my file with input
-        Scanner keyboard = new Scanner(System.in);
         ArrayList<Integer> intcode = new ArrayList<>();
         Scanner scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(a)).getFile()));
         while (scanner.hasNextInt()) {

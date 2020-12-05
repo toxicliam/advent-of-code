@@ -5,45 +5,70 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class AmplifiersSeries {
-    private int amp4CodeInt, amp3CodeInt, amp2CodeInt, amp1CodeInt;
+    private static List<String> perm = new ArrayList<>();
 
     public Integer series(String a) throws FileNotFoundException {
-        AmpComputer computer = new AmpComputer();
 
-
-        HeapAlg heap = new HeapAlg();
+        List<Integer> output = new ArrayList<>();
         int[] phase = {0, 1, 2, 3, 4};
-        List<String> settings = heap.printAllRecursive(5, phase);
-        Map<Integer, String> phaseSetting = new HashMap<>();
-        for (int i = 0; i <= settings.size(); i++) {
-            try {
-                phaseSetting.put(i, settings.get(i).substring(i, i + 1));
-            } catch (IndexOutOfBoundsException e) {
-                phaseSetting.put(i, settings.get(i).substring(i));
+        printAllRecursive(5, phase);
+        int amp4CodeInt;
+        int amp3CodeInt;
+        int amp2CodeInt;
+        int amp1CodeInt;
+        for (int i = 0; i < perm.size(); i++) {
+            Map<Integer, String> setting = new HashMap<>();
+            for (int j = 0; j <= 4; j++) {
+                String h;
+                try {
+                    h = perm.get(i).substring(j, j + 1);
+                } catch (IndexOutOfBoundsException e) {
+                    h = perm.get(i).substring(j);
+                }
+                setting.putIfAbsent(j, h);
             }
+            AmpComputer computer = new AmpComputer();
+            amp1CodeInt = computer.modified(a, Integer.parseInt(setting.get(0)), 0);
+            amp2CodeInt = computer.modified(a, Integer.parseInt(setting.get(1)), amp1CodeInt);
+            amp3CodeInt = computer.modified(a, Integer.parseInt(setting.get(2)), amp2CodeInt);
+            amp4CodeInt = computer.modified(a, Integer.parseInt(setting.get(3)), amp3CodeInt);
+            output.add(computer.modified(a, Integer.parseInt(setting.get(4)), amp4CodeInt));
+            System.out.println(i);
         }
-        return recursion(a, phaseSetting, 0, 0).get(0);
+        Collections.sort(output);
+        Collections.reverse(output);
+        return output.get(0);
     }
 
-    public List<Integer> recursion(String a, Map<Integer, String> phaseSetting, int i, int j) throws FileNotFoundException {
-        AmpComputer computer = new AmpComputer();
-        Map<Integer, Integer> output = new HashMap<>();
-        List<Integer> finale = new ArrayList<>();
-        while (i < phaseSetting.size()) {
-            if (j < 5) {
-                if (j == 0) {
-                    output.put(j, computer.modified(a, Integer.parseInt(phaseSetting.get(i).substring(j, j + 1)), 0));
+    public void printAllRecursive(int n, int[] input) {
+        if (n == 1) {
+            printArray(input);
+        } else {
+            printAllRecursive(n - 1, input);
+            for (int i = 0; i < n - 1; i++) {
+                if (n % 2 == 0) {
+                    swap(input, i, n - 1);
                 } else {
-                    output.put(j, computer.modified(a, Integer.parseInt(phaseSetting.get(i).substring(j, j + 1)), output.get(j - 1)));
+                    swap(input, 0, n - 1);
                 }
-                j++;
-                recursion(a, phaseSetting, i, j);
+                printAllRecursive(n - 1, input);
             }
-            finale.add(output.get(4));
-            i++;
         }
-        Collections.sort(finale);
-        return finale;
+    }
+
+    private static void swap(int[] input, int a, int b) {
+        int tmp = input[a];
+        input[a] = input[b];
+        input[b] = tmp;
+    }
+
+    private static void printArray(int[] input) {
+        StringBuilder setting = new StringBuilder();
+        for (int t = 0; t <= 4; t++) {
+            setting.append(input[t]);
+        }
+        perm.add(setting.toString());
+
     }
 }
 
